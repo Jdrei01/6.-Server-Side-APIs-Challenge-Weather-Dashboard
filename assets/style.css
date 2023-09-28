@@ -1,0 +1,12 @@
+header {
+    background-color: royalblue;
+    text-align: center;
+    padding: 30px;
+    font-family: 'Open Sans', sans-serif;
+    color: white;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: whitesmoke;
+}
