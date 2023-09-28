@@ -23,18 +23,38 @@
     <!-- Basic bootstrap layout elements -->
     <div class="container">
         <div class="row">
-            <div class="col">
+            <div class="col-sm-3">
+                <h2 class="searchCity">Search for a City:</h2>
                 <div class="card">
 
-                    <div class="card-body">
+                    <div class="search">
+                        <input type="text" class="search-bar" placeholder="Enter your city" />
+                        
+                        <!-- Search button -->
+                        <button class="searchBtn btn btn-primary" type="button" id="searchButton">Submit</button>
 
+                        <!-- Clear button -->
+                        <button class="btn btn-primary mb-3" type="button" id="clearHistory">Clear</button>
 
+                        <div class="weather">
+                            <h2 class="city">Weather in Las Vegas</h2>
+                            <p class="temp">Temperature: </p>
+                            <p class="humidity">Humidity: </p>
+                            <p class="wind">Wind speed: </p>
+                            <p class="uvi">Uv Index:</p>
+
+                            <i class="uviValue"></i>
+                        </div>
                     </div>
-
                 </div>
 
+
             </div>
+
         </div>
+
+    </div>
+    </div>
     </div>
 
 
