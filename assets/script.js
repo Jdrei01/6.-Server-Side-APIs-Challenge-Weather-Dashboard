@@ -9,15 +9,28 @@ var wind = document.querySelector('.wind');
 
 var fiveDay = document.querySelector('.fiveDay');
 
+//var recentContainer = $("#recent")
+//var clear = $("#clearHistory");
+
+//renderRecents();
+
+/*clear.on("click", function() {
+    localStorage.removeItem("recents");
+    recentSearches.length = 0;
+    renderRecents();
+    console.log('clear')
+  });
+  */
+
 // function that shows the weather
 function showWeather(weather) {
     city.textContent = weather.city.name;
     temperature.textContent = `Temperature: ${weather.list[0].main.temp} fahrenheit`;
-    humidity.textContent = `Humidity: ${weather.list[0].main.humidity}%`
-    wind.textContent = `Wind: ${weather.list[0].wind.speed}mph`
-
-
+    humidity.textContent = `Humidity: ${weather.list[0].main.humidity}%`;
+    wind.textContent = `Wind: ${weather.list[0].wind.speed}mph`;
 }
+
+
 // five day forecast
 function fiveDayForecast(weather) {
     console.log(weather)
@@ -27,8 +40,8 @@ function fiveDayForecast(weather) {
         var html = ` <div class="card col-2">
         <h2 class="date">Date</h2>
         <p class="temp">Temperature: ${weather.list[index].main.temp}</p>
-        <p class="humidity">Humidity: </p>
-        <p class="wind">Wind speed: </p>
+        <p class="humidity">Humidity: ${weather.list[index].main.temp} </p>
+        <p class="wind">Wind speed: ${weather.list[index].wind.speed} </p>
     </div>`
         fiveDay.insertAdjacentHTML('beforeend', html)
     }
