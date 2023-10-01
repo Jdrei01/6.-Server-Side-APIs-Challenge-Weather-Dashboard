@@ -6,6 +6,8 @@ var city = document.querySelector('.city');
 var temperature = document.querySelector('.temp');
 var humidity = document.querySelector('.humidity');
 var wind = document.querySelector('.wind');
+var topContainer = document.querySelector('.weather');
+var fiveDayHeader = document.querySelector('.fiveDayHeader')
 
 var fiveDay = document.querySelector('.fiveDay');
 
@@ -32,6 +34,8 @@ function showWeather(weather) {
     temperature.textContent = `Temperature: ${weather.list[0].main.temp} fahrenheit`;
     humidity.textContent = `Humidity: ${weather.list[0].main.humidity}%`;
     wind.textContent = `Wind: ${weather.list[0].wind.speed}mph`;
+    topContainer.classList.remove("hide");
+    fiveDayHeader.classList.remove("hide");
 }
 
 

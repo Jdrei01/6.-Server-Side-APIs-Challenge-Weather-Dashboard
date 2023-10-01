@@ -11,10 +11,25 @@ body {
     background-color: whitesmoke;
 }
 
-/*.fiveDay {
+.date {
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.weather {
     padding: 10px;
     background-color: white;
+}
+
+.hide {
+    display: none;
+}
+
+.fiveDayHeader {
+    padding: 10px;
+    background-color: transparent;
     color: black;
-}*/
+    border: 0px solid;
+}
 
 
