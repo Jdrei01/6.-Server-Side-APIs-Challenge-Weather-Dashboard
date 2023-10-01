@@ -9,6 +9,10 @@ var wind = document.querySelector('.wind');
 
 var fiveDay = document.querySelector('.fiveDay');
 
+var date = document.querySelector("#date");
+const currentDate = dayjs();
+date.textContent = currentDate.format("MMMM D, YYYY");
+
 //var recentContainer = $("#recent")
 //var clear = $("#clearHistory");
 
@@ -38,7 +42,7 @@ function fiveDayForecast(weather) {
     for (var index = 0; index < weather.list.length; index = index + 8) {
         console.log(weather.list[index])
         var html = ` <div class="card col-2">
-        <h2 class="date">Date</h2>
+        <h2 class="date"> ${dayjs(weather.list[index].dt_txt).format("MMMM D, YYYY")} </h2>
         <p class="temp">Temperature: ${weather.list[index].main.temp}</p>
         <p class="humidity">Humidity: ${weather.list[index].main.temp} </p>
         <p class="wind">Wind speed: ${weather.list[index].wind.speed} </p>
