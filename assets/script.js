@@ -10,7 +10,7 @@ var fiveDayHeader = document.querySelector('.fiveDayHeader')
 var fiveDay = document.querySelector('.fiveDay');
 var addToHistory = JSON.parse(localStorage.getItem('search-history')) || [];
 
-//var recentContainer = $("#recent");
+recentContainer = $("#recent");
 
 
 var date = document.querySelector("#date");
@@ -19,14 +19,6 @@ date.textContent = currentDate.format("MMMM D, YYYY");
 
 //var clear = $("#clearHistory");
 
-
-/*renderRecents();
-// History of previously searched cities
-function renderRecents() {
-    recentContainer.empty()
-
-    for (let)
-}*/
 
 // function that shows the weather
 function showWeather(weather) {
@@ -60,11 +52,13 @@ document.querySelector('#city-search').addEventListener('submit', function (even
     event.preventDefault();
 
     var city = searchBar.value.trim();
+
     // save city history to localStorage
     function setLocalStorage(city) {
         if (addToHistory.indexOf(city) === -1) {
             addToHistory.push(city);
             localStorage.setItem("search-history", JSON.stringify(addToHistory));
+            displayHistory();
         }
     }
     setLocalStorage(city);
@@ -94,5 +88,42 @@ document.querySelector('#city-search').addEventListener('submit', function (even
                 })
         })
 });
+
+// history of previously searched cities
+function displayHistory() {
+    recentContainer.empty();
+
+    for (var i = 0; i < addToHistory.length; i++) {
+        var recentInput = $("<input>");
+        recentInput.attr("type", "text");
+        recentInput.attr("readonly", true);
+        recentInput.attr("class", "form-control-lg text-black");
+        recentInput.attr("value", addToHistory[i]);
+        recentInput.on("click", function () {
+            var catUrl = `https://api.openweathermap.org/data/2.5/weather?appid=${apiKey}&q=${addToHistory[i]}&units=imperial`;
+            fetch(catUrl)
+                .then(function (response) {
+                    return response.json();
+
+                })
+                .then(function (city) {
+                    console.log(city);
+                    var lon = city.coord.lon;
+                    var lat = city.coord.lat;
+                    console.log(lon, lat);
+
+                    // fetch forecast data using lat and lon
+                    fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log(data)
+                            showWeather(data)
+                            fiveDayForecast(data)
+                        })
+                })
+        });
+        recentContainer.append(recentInput);
+    }
+}
 
 
