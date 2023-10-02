@@ -41,5 +41,9 @@ body {
     position: relative;
     left: 400px;
     bottom: 100px;
-    top: ;
+}
+
+.date {
+    font-weight: bold;
+    font-size: 20px;
 }

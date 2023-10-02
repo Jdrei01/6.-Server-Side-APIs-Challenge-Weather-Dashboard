@@ -23,7 +23,7 @@ date.textContent = currentDate.format("MMMM D, YYYY");
 // function that shows the weather
 function showWeather(weather) {
     city.textContent = weather.city.name;
-    temperature.textContent = `Temperature: ${weather.list[0].main.temp} fahrenheit`;
+    temperature.textContent = `Temperature: ${weather.list[0].main.temp} °F`;
     humidity.textContent = `Humidity: ${weather.list[0].main.humidity}%`;
     wind.textContent = `Wind: ${weather.list[0].wind.speed}mph`;
     topContainer.classList.remove("hide");
@@ -39,9 +39,9 @@ function fiveDayForecast(weather) {
         console.log(weather.list[index])
         var html = ` <div class="card col-2">
         <h2 class="date"> ${dayjs(weather.list[index].dt_txt).format("MM/DD/YYYY")} </h2>
-        <p class="temp">Temperature: ${weather.list[index].main.temp}</p>
-        <p class="humidity">Humidity: ${weather.list[index].main.temp} </p>
-        <p class="wind">Wind speed: ${weather.list[index].wind.speed} </p>
+        <p class="temp">Temperature: ${weather.list[index].main.temp} °F</p>
+        <p class="humidity">Humidity: ${weather.list[index].main.temp}% </p>
+        <p class="wind">Wind speed: ${weather.list[index].wind.speed}mph </p>
     </div>`
         fiveDay.insertAdjacentHTML('beforeend', html)
     }
