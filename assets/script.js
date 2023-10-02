@@ -1,32 +1,32 @@
 var apiKey = '8cd6c39495c0df975b0917be4909b26d';
 var apiUrl = 'https://api.openweathermap.org/data/2.5/';
 var searchBar = document.querySelector('.search-bar');
-
 var city = document.querySelector('.city');
 var temperature = document.querySelector('.temp');
 var humidity = document.querySelector('.humidity');
 var wind = document.querySelector('.wind');
 var topContainer = document.querySelector('.weather');
 var fiveDayHeader = document.querySelector('.fiveDayHeader')
-
 var fiveDay = document.querySelector('.fiveDay');
+var addToHistory = JSON.parse(localStorage.getItem('search-history')) || [];
+
+//var recentContainer = $("#recent");
+
 
 var date = document.querySelector("#date");
 const currentDate = dayjs();
 date.textContent = currentDate.format("MMMM D, YYYY");
 
-//var recentContainer = $("#recent")
 //var clear = $("#clearHistory");
 
-//renderRecents();
 
-/*clear.on("click", function() {
-    localStorage.removeItem("recents");
-    recentSearches.length = 0;
-    renderRecents();
-    console.log('clear')
-  });
-  */
+/*renderRecents();
+// History of previously searched cities
+function renderRecents() {
+    recentContainer.empty()
+
+    for (let)
+}*/
 
 // function that shows the weather
 function showWeather(weather) {
@@ -60,7 +60,15 @@ document.querySelector('#city-search').addEventListener('submit', function (even
     event.preventDefault();
 
     var city = searchBar.value.trim();
+    // save city history to localStorage
+    function setLocalStorage(city) {
+        if (addToHistory.indexOf(city) === -1) {
+            addToHistory.push(city);
+            localStorage.setItem("search-history", JSON.stringify(addToHistory));
+        }
+    }
     var catUrl = `https://api.openweathermap.org/data/2.5/weather?appid=${apiKey}&q=${city}&units=imperial`;
+
 
     // fetch
     fetch(catUrl)
