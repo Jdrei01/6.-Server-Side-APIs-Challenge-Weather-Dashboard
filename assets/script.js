@@ -12,14 +12,13 @@ var addToHistory = JSON.parse(localStorage.getItem('search-history')) || [];
 
 recentContainer = $("#recent");
 
-
 var date = document.querySelector("#date");
 const currentDate = dayjs();
 date.textContent = currentDate.format("MMMM D, YYYY");
 
 //var clear = $("#clearHistory");
 
-
+      
 // function that shows the weather
 function showWeather(weather) {
     city.textContent = weather.city.name;
@@ -119,11 +118,11 @@ function displayHistory() {
                             console.log(data)
                             showWeather(data)
                             fiveDayForecast(data)
+                            
                         })
                 })
         });
         recentContainer.append(recentInput);
     }
 }
-
 

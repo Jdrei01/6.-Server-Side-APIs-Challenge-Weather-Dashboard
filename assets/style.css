@@ -39,11 +39,16 @@ body {
 
 #space{
     position: relative;
-    left: 400px;
-    bottom: 100px;
+    left: 310px;
+    bottom: 92px;
 }
+
 
 .date {
     font-weight: bold;
     font-size: 20px;
+}
+
+#city-search {
+    box-sizing: inherit;
 }
