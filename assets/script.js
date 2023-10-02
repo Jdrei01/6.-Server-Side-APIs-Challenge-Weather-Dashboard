@@ -67,6 +67,8 @@ document.querySelector('#city-search').addEventListener('submit', function (even
             localStorage.setItem("search-history", JSON.stringify(addToHistory));
         }
     }
+    setLocalStorage(city);
+
     var catUrl = `https://api.openweathermap.org/data/2.5/weather?appid=${apiKey}&q=${city}&units=imperial`;
 
 
