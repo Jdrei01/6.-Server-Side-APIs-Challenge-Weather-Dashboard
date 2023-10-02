@@ -32,3 +32,14 @@ body {
     border: 0px solid;
 }
 
+.fiveDay {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#space{
+    position: relative;
+    left: 400px;
+    bottom: 100px;
+    top: ;
+}

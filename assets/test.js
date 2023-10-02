@@ -10,6 +10,7 @@ var fiveDayHeader = document.querySelector('.fiveDayHeader')
 var fiveDay = document.querySelector('.fiveDay');
 var addToHistory = JSON.parse(localStorage.getItem('search-history')) || [];
 
+
 recentContainer = $("#recent");
 
 
@@ -38,7 +39,7 @@ function fiveDayForecast(weather) {
     for (var index = 0; index < weather.list.length; index = index + 8) {
         console.log(weather.list[index])
         var html = ` <div class="card col-2">
-        <h2 class="date"> ${dayjs(weather.list[index].dt_txt).format("MM/DD/YYYY")} </h2>
+        <h2 class="date"> ${dayjs(weather.list[index].dt_txt).format("MMMM D, YYYY")} </h2>
         <p class="temp">Temperature: ${weather.list[index].main.temp}</p>
         <p class="humidity">Humidity: ${weather.list[index].main.temp} </p>
         <p class="wind">Wind speed: ${weather.list[index].wind.speed} </p>
@@ -93,14 +94,22 @@ document.querySelector('#city-search').addEventListener('submit', function (even
 function displayHistory() {
     recentContainer.empty();
 
-    for (var i = 0; i < addToHistory.length; i++) {
+    for (let i = 0; i < addToHistory.length; i++) {
         var recentInput = $("<input>");
         recentInput.attr("type", "text");
         recentInput.attr("readonly", true);
         recentInput.attr("class", "form-control-lg text-black");
         recentInput.attr("value", addToHistory[i]);
         recentInput.on("click", function () {
-            var catUrl = `https://api.openweathermap.org/data/2.5/weather?appid=${apiKey}&q=${addToHistory[i]}&units=imperial`;
+            getWeather($(this).attr(“value”));
+            function setLocalStorage(city) {
+                if (addToHistory.indexOf(city) === -1) {
+                    addToHistory.push(city);
+                    localStorage.setItem("search-history", JSON.stringify(addToHistory));
+                    displayHistory();
+                }
+            }
+            /*var catUrl = `https://api.openweathermap.org/data/2.5/weather?appid=${apiKey}&q=${addToHistory[i]}&units=imperial`;
             fetch(catUrl)
                 .then(function (response) {
                     return response.json();
@@ -121,9 +130,37 @@ function displayHistory() {
                             fiveDayForecast(data)
                         })
                 })
-        });
-        recentContainer.append(recentInput);
-    }
+        });*/
+            recentContainer.prepend(recentInput);
+        }
 }
+
+    async function getWeather(city) {
+        var apiUrl = 'https://api.openweathermap.org/data/2.5/'; +
+            city +
+            "&units=imperial&appid=8cd6c39495c0df975b0917be4909b26d";
+        var response = await fetch(apiUrl);
+        if (response.ok) {
+            var data = await response.json();
+            var nameValue = data.name;
+            var tempValue = data.main.temp;
+            var humidityValue = data.main.humidity;
+            var windValue = data.wind.speed;
+            console.log(data);
+            var lat = data.coord.lon;
+            var lon = data.coord.lat;
+
+
+            // Fetch weather data for the selected city
+            // Update HTML elements with the weather information
+        }
+
+        function setLocalStorage(city) {
+            if (addToHistory.indexOf(city) === -1) {
+                addToHistory.push(city);
+                localStorage.setItem("search-history", JSON.stringify(addToHistory));
+                displayHistory();
+            }
+        }
 
 
