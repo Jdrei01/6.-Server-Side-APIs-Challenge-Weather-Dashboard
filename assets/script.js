@@ -136,6 +136,5 @@ clear.on("click", function() {
 });
 
 // TO-DO
-// clear button function.
 // WHEN I click on a city in the search history, THEN I am again presented with current and future conditions for that city again.
 // remove the stack up of the five day forecast
