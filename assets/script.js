@@ -16,9 +16,9 @@ var date = document.querySelector("#date");
 const currentDate = dayjs();
 date.textContent = currentDate.format("MMMM D, YYYY");
 
-//var clear = $("#clearHistory");
+var clear = $("#clearHistory");
 
-      
+
 // function that shows the weather
 function showWeather(weather) {
     city.textContent = weather.city.name;
@@ -41,7 +41,8 @@ function fiveDayForecast(weather) {
         <p class="temp">Temperature: ${weather.list[index].main.temp} °F</p>
         <p class="humidity">Humidity: ${weather.list[index].main.temp}% </p>
         <p class="wind">Wind speed: ${weather.list[index].wind.speed}mph </p>
-        <p> <img src="https://openweathermap.org/img/w/${weather.list[index].weather[0].icon}.png"> </p>
+        <p> <img src="https://openweathermap.org/img/w/${weather.list[index].weather[0].icon}.png"> 
+        </p>
     </div>`
         fiveDay.insertAdjacentHTML('beforeend', html)
     }
@@ -127,3 +128,14 @@ function displayHistory() {
     }
 }
 
+// clear history function
+clear.on("click", function() {
+    localStorage.removeItem("search-history");
+    addToHistory.length = 0;
+    displayHistory();
+});
+
+// TO-DO
+// clear button function.
+// WHEN I click on a city in the search history, THEN I am again presented with current and future conditions for that city again.
+// remove the stack up of the five day forecast
