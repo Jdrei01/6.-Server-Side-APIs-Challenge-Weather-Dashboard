@@ -41,6 +41,7 @@ function fiveDayForecast(weather) {
         <p class="temp">Temperature: ${weather.list[index].main.temp} °F</p>
         <p class="humidity">Humidity: ${weather.list[index].main.temp}% </p>
         <p class="wind">Wind speed: ${weather.list[index].wind.speed}mph </p>
+        <p> <img src="https://openweathermap.org/img/w/${weather.list[index].weather[0].icon}.png"> </p>
     </div>`
         fiveDay.insertAdjacentHTML('beforeend', html)
     }
@@ -81,7 +82,7 @@ document.querySelector('#city-search').addEventListener('submit', function (even
             fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`)
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data)
+                    console.log(data.list[0].weather[0].icon)
                     showWeather(data)
                     fiveDayForecast(data)
                 })
@@ -118,7 +119,7 @@ function displayHistory() {
                             console.log(data)
                             showWeather(data)
                             fiveDayForecast(data)
-                            
+
                         })
                 })
         });
